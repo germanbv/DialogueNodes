@@ -1,13 +1,69 @@
-# DialogueNodes
+# DialogueNodes for C#
 ![DialogueNodes editor](.screenshots/DN5.png)
 <img src='.screenshots/DN4.png' width='51%'/>
 <img src='.screenshots/DN3.png' width='48%'/>
-A plugin for creating and exporting dialogue trees from within the Godot Editor.
-Godot provides all the tools needed to create your own dialogue system, however, for most game developers, this task is tedious and complex. This is where Dialogue Nodes come into the picture. The plugin extends your Godot editor to allow for creating, testing and incorporating branching dialogues in your game.
+A plugin for creating and exporting dialogue trees from within the Godot Editor using C#.
+Godot provides all the tools needed to create your dialogue system, however, for most game developers, this task is tedious and complex. This is where Dialogue Nodes come into the picture. The plugin extends your Godot editor to allow for creating, testing, and incorporating branching dialogues in your game.
+
+#####
+## Features
+### Simple and straight-forward editor
+The dialogue editor was created with the focus on keeping the workflow simple and easy to pick up. While the editor supports powerful features under the hood, it tries to stay out of the way of the user. A beginner can easily pick up the editor and start creating basic dialogues thanks to the intuitive design. If your focus is on creating simple dialogues for your game, you can get set up in no time. If you want to work with multiple dialogue files or put all the branching dialogues in one file, DialogueNodes has got you covered. Heck! Do both if you want!
+
+### Dialogue animations, conditions, variables, signals: it's all there!
+The real power of the plugin lies in the tools it provides the user to utilize the full potential of the feature-rich dialogue editor. Be it using variable values in the dialogue, conditional dialogues or even conditional options, modifying variable values and even emitting signals which open up a world of possibilities when it comes to custom events during the dialogue.
+
+### Test it before you save it
+The plugin allows for running any branching dialogue within the editor itself for quick testing and faster iteration times. No need to run your game every time you modify the dialogue. Under the hood, this uses the same `DialogueBox` node you'll use in your project. So, you'll know exactly how your dialogue will run in-game without even running the game!
+
+Additionally, enable the debugging toggle to understand what events are occurring as the dialogue runs. Note: this feature only works in the editor, not the game.
+
+### Put a dialogue box in your game in just 2 steps
+Once you have your dialogue files and are ready to test them out in-game, the plugin provides a super simple way of creating dialogue boxes for your game.
+
+1. Add the `DialogueBox` node to your scene and set its position and size as per your requirements.
+2. Select the dialogue file from the inspector and run `$DialogueBox.start('<YOUR_START_ID>')` in your code to start the dialogue.
+
+The `DialogueBox` node provides several options to customize the look and layout to your liking. However, being derived from `Control` nodes, it is recommended to change the colors, font and borders using Godot's theme editor.
+
+#####
+## Extended Features
+### New C# BBCode FXs!
+- colormod fx
+- cuss
+- ghost
+- heart
+- jump
+- l33t
+- nervous
+- number
+- rain
+- sparkle
+- uWu
+- woo
+  
+### External variables support
+Let the dialogue manager read your external class and learn about your public variables. You will be able to GET, SET and COMPARE your external variables within your dialogue!
+
+### Improved conditionals
+Conditional Nodes support consulting against an external or internal variable.
+
+### Optimized Performance
+I've ported, refactored, and optimized the original formula in a way that utilizes less horsepower and fixes some issues.
+
+### Improved transitions
+You can use the new "console" transition fx. Transitions detect punctuation, you can set up a small pause to play during punctuation, making dialogues a tiny bit juicer.
+
+### Play type sound FX 
+A Demo scene contains an example of how to play a type sound fx during the dialogue.
+
+### Visual static types
+In opposite to GDScript, C# needs to know if you are working with a certain type of variable, variable types are now visible in the Dialogue Node's editor, similarly, you can define variable types for internal variables as part of your dialogue.
+
 
 #####
 ## Installation
-The installation might be a bit tricky and you need to rely on version control to make this work... after copying and pasting the plugin into your project, Godot might complain about missing classes... that happens because Godot is attempting to load an addon that isn't compiled (we are using C#, and we need to compile the addon!). This might cause some addon scenes that contain serialized exposed fields to lose their references; that is a Godot bug which I hope gets solved soon because it's extremely annoying, so if you step into some missing classes error.. check that the addon scenes didn't lose their references.
+The installation might be a bit tricky and you need to rely on version control to make this work... after copying and pasting the plugin into your project, Godot might complain about missing classes... that happens because Godot is attempting to load an addon that isn't compiled (we are using C#, and we need to compile the addon!). Make sure you don't open any addon-related scene before compiling, otherwise, scenes that contain serialized exposed fields might lose their references; that is a Godot bug that I hope gets solved, so if you step into some missing classes or signal error or null references when loading the addon.. check that the addon scenes didn't lose their references, try to use version control to recover the addon's original state if that's the case.
 
 To install the addon:
 - Copy the addons/dlaogue_nodes and example folders and paste them into your project.
@@ -19,30 +75,10 @@ To install the addon:
 - Done!
 
 #####
-## Features
-### Simple and straight-forward editor
-The dialogue editor was created with the focus on keeping the workflow simple and easy to pick up. While the editor supports powerful features under the hood, it tries to stay out of the way of the user. A beginner can easily pick up the editor and start creating basic dialogues thanks to the intuitive design. If your focus is on creating simple dialogues for your game, you can get setup in no time. If you want to work with multiple dialogue files, or put all the branching dialogues in one file, DialogueNodes have got you covered. Heck! Do both if you want!
-
-### Dialogue animations, conditions, variables, signals: its all there!
-The real power of the plugin lies in the tools it provides the user to utilize the full potential of the feature rich dialogue editor. Be it using variable values in the dialogue, conditional dialogues or even conditional options, modifying variable values and even emitting signals which open up a world of posibilities when it comes to custom events during the dialogue.
-
-### Test it before you save it
-The plugin allows for running any branching dialogue within the editor itself for quick testing and faster iteration times. No need to run your game every time you modify the dialogue. Under the hood, this uses the same `DialogueBox` node you'll use in your project. So, you'll know exactly how your dialogue will run in-game without even running the game!
-
-Additionally, enable the debugging toggle to understand what all events are occuring as the dialogue runs. Note: this feature only works in the editor, not the game.
-
-### Put a dialogue box in your game in just 2 steps
-Once you have your dialogue files and are ready to test them out in-game, the plugin provides a super simple way of creating dialogue boxes for your game.
-
-1. Add the `DialogueBox` node to your scene and set its position and size as per your requirements.
-2. Select the dialogue file from the inspector and run `$DialogueBox.start('<YOUR_START_ID>')` in your code to start the dialogue.
-
-The `DialogueBox` node provides several options to customize the look and layout to your liking. However, being derived from `Control` nodes, it is recommended to change the colors, font and borders using Godot's theme editor.
-
-### Localize it!
-The dialogue files are stored as Godot Resources, which are not only easy to edit, load and save, but also great for localizing using Godot awesome localization remap tools!
-
-Prefer other localization methods? Stay tuned as more localization options are planned for future releases.
+## Warning
+- Do not use [] (square brackets) in your dialogues! If you need that, try using a similar char such as 【】 or 〚〛. As part of the BBCode support, the system identifies [ as the beginning of a BBCode and the system will crash.
+- Always close your BBCodes: don't use [color=red] without [/color], the system will crash if you don't close your tags and you are using transition effects. (I should do something to prevent this)
+- Be careful when working with addon-related scripts as it might trigger the .NET Failed to unload assemblies error explained below.
 
 #####
 ## Known C# related issues
