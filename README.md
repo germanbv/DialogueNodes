@@ -41,12 +41,20 @@ The `DialogueBox` node provides several options to customize the look and layout
 - sparkle
 - uWu
 - woo
-  
+
+https://github.com/germanbv/DialogueNodesForCSharp/assets/72418115/39fb645a-d031-45b8-baf6-2be203ce8dc6
+
 ### External variables support
 Let the dialogue manager read your external class and learn about your public variables. You will be able to GET, SET and COMPARE your external variables within your dialogue!
 
+![image](https://github.com/germanbv/DialogueNodesForCSharp/assets/72418115/eda12943-6aeb-4797-8b52-382b007561db)
+![image](https://github.com/germanbv/DialogueNodesForCSharp/assets/72418115/2a2dbc52-c4ca-495e-aa4c-1dee2ba8901f)
+
+
 ### Improved conditionals
 Conditional Nodes support consulting against an external or internal variable.
+
+![image](https://github.com/germanbv/DialogueNodesForCSharp/assets/72418115/220572ff-2f56-4407-b8d5-338a42943d5a)
 
 ### Optimized Performance
 I've ported, refactored, and optimized the original formula in a way that utilizes less horsepower and fixes some issues.
@@ -54,12 +62,18 @@ I've ported, refactored, and optimized the original formula in a way that utiliz
 ### Improved transitions
 You can use the new "console" transition fx. Transitions detect punctuation, you can set up a small pause to play during punctuation, making dialogues a tiny bit juicer.
 
+![image](https://github.com/germanbv/DialogueNodesForCSharp/assets/72418115/e95565bf-d3f5-47f2-9b9c-45f5d3222e1e)
+
 ### Play type sound FX 
 A Demo scene contains an example of how to play a type sound fx during the dialogue.
+
+![image](https://github.com/germanbv/DialogueNodesForCSharp/assets/72418115/51058663-00e4-4ec6-84c8-8fc79643e2f7)
 
 ### Visual static types
 In opposite to GDScript, C# needs to know if you are working with a certain type of variable, variable types are now visible in the Dialogue Node's editor, similarly, you can define variable types for internal variables as part of your dialogue.
 
+![image](https://github.com/germanbv/DialogueNodesForCSharp/assets/72418115/f7ba2153-5528-44be-9bdd-c0aec168e7eb)
+![image](https://github.com/germanbv/DialogueNodesForCSharp/assets/72418115/3ba80b64-be2b-47e5-bde2-3e1ebeee376c)
 
 #####
 ## Installation
@@ -92,4 +106,8 @@ To install the addon:
 - Shifting focus to empty option from another empty option results in the option data moving around
 - DialogNodes in the graph have options overflowing outside the edges. This seems to be a bug introduced in Godot 4.2
 
-If you find any bugs or issues, [report them in the issues page](https://github.com/germanbv/DialogueNodesForCSharp/issues). Please ensure the same or a similar issues isn't already present before creating your own.
+If you find any bugs or issues, [report them in the issues page](https://github.com/germanbv/DialogueNodesForCSharp/issues). Please ensure the same or similar issues aren't already present before creating your own.
+
+#####
+## Want to learn more?
+Make sure you check the [Wiki](https://github.com/germanbv/DialogueNodesForCSharp/wiki)
