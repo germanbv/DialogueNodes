@@ -89,12 +89,6 @@ To install the addon:
 - Done!
 
 #####
-## Warning
-- Do not use [] (square brackets) in your dialogues! If you need that, try using a similar char such as 【】 or 〚〛. As part of the BBCode support, the system identifies [ as the beginning of a BBCode and the system will crash.
-- Always close your BBCodes: don't use [color=red] without [/color], the system will crash if you don't close your tags and you are using transition effects. (I should do something to prevent this)
-- Be careful when working with addon-related scripts as it might trigger the .NET Failed to unload assemblies error explained below.
-
-#####
 ## Known C# related issues
 - .NET: Failed to unload assemblies: This bug is a [Godot-related issue](https://github.com/godotengine/godot/issues/78513) and it's a very ugly one. It seems to trigger whenever you work on an addon-related script while having the plugin enabled. In that case, Godot will not be able to unload the assemblies (probably because they are in use by the editor). This will cause the editor to be unable to compile the project and you will need to restart the editor. Be aware that, if you have any scene that makes use of an addon-related file with serialized references... those references might get lost and the plugin might break (I highly suggest using version control to recover these references after stepping into this issue, a workaround is to hardcode any reference until this bug gets fixed).
 - When closing Godot you might get: "Attempt to disconnect a nonexistent connection from RichTextLabel". Although this is harmless.. this is another [Godot-related bug](https://github.com/godotengine/godot/issues/76708) caused by the [tool] keyword within C# scripts.
