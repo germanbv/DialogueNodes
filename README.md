@@ -1,4 +1,9 @@
-# DialogueNodes for C#
+# DialogueNodes for C# v1.6.1
+### Warning
+The installation of this addon can be a bit tricky, and **I highly suggest you use version control for it to work smoothly**. After copying and pasting the plugin into your project, Godot might complain about missing classes. This happens because Godot is trying to load an uncompiled addon (since we're using C#, we need to compile it first!).
+
+Make sure you don't open any addon-related scenes before compiling. Otherwise, scenes containing serialized exposed fields might lose their bindings. This is a known Godot bug that hopefully gets fixed. If you encounter missing classes, signal errors, or null references when loading the addon, check if any addon scene lost their bindings. If that's the case, try using version control to recover the addon's original state.
+
 ![DialogueNodes editor](.screenshots/DN5.png)
 <img src='.screenshots/DN4.png' width='51%'/>
 <img src='.screenshots/DN3.png' width='48%'/>
@@ -29,6 +34,10 @@ The `DialogueBox` node provides several options to customize the look and layout
 #####
 ## Extended Features
 ### New C# BBCode FXs!
+
+- wait
+- speed
+- pause
 - colormod fx
 - cuss
 - ghost
@@ -77,9 +86,6 @@ In opposite to GDScript, C# needs to know if you are working with a certain type
 
 #####
 ## Installation
-The installation might be a bit tricky and you need to rely on version control to make this work... after copying and pasting the plugin into your project, Godot might complain about missing classes... that happens because Godot is attempting to load an addon that isn't compiled (we are using C#, and we need to compile the addon!). Make sure you don't open any addon-related scene before compiling, otherwise, scenes that contain serialized exposed fields might lose their references; that is a Godot bug that I hope gets solved, so if you step into some missing classes or signal error or null references when loading the addon.. check that the addon scenes didn't lose their references, try to use version control to recover the addon's original state if that's the case.
-
-To install the addon:
 - Copy the addons/dlaogue_nodes and example folders and paste them into your project.
 - This is a C# plugin and currently on 4.2.1; C# plugins have a tricky behavior, you must have created a C# solution to make this work as we need the editor to have compiled the plugin before we load it.
 - In case you don't have a C# solution, go to Project > Tools > C# > Create C# Solution.
@@ -87,12 +93,6 @@ To install the addon:
 - I suggest you restart Godot at this point.
 - Go to Project > Project Settings > Plugins and Enable Dialogue Nodes for C#.
 - Done!
-
-#####
-## Warning
-- Do not use [] (square brackets) in your dialogues! If you need that, try using a similar char such as 【】 or 〚〛. As part of the BBCode support, the system identifies [ as the beginning of a BBCode and the system will crash.
-- Always close your BBCodes: don't use [color=red] without [/color], the system will crash if you don't close your tags and you are using transition effects. (I should do something to prevent this)
-- Be careful when working with addon-related scripts as it might trigger the .NET Failed to unload assemblies error explained below.
 
 #####
 ## Known C# related issues
