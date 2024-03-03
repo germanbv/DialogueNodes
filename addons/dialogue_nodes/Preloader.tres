@@ -1,0 +1,39 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dvaxnhtmo01o"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.cs" id="1_314ic"]
+
+[resource]
+script = ExtResource("1_314ic")
+FileName = "ExampleBasic"
+Starts = {
+"Start": &"0_1"
+}
+Nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(520, -20),
+"start_id": "Start"
+},
+"1_1": {
+"dialogue": "This is just an example.",
+"offset": Vector2(840, -20),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(305.325, 275),
+"speaker": 1
+}
+}
+Variables = {
+"Delta": {
+"type": 4,
+"value": "Cuao"
+}
+}
+Comments = []
+Strays = []
+Characters = "res://examples/CharacterList.tres"

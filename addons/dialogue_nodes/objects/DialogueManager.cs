@@ -31,8 +31,20 @@ public partial class DialogueManager : Control
 		dialogueUI.GetNode<DialogueInput>("MarginContainer/DialogueInput").Initialize(skipInputAction);
 		dialogueUI.Initialize(this, transitionType, textSpeed, punctuationPause);
 		dialogueCore.Initialize(this, transitionType, punctuationPause);
+		preloadDialogue();
 	}
 
+
+	private void preloadDialogue() 
+	{	
+		if (data != null) 
+		{
+			Start(data, startID);
+			dialogueCore.EndDialogue();
+			dialogueUI.Display(false);
+		}
+	}
+		
 	public void Start(DialogueData dialogueData = null, string dialogueID = null) 
 	{	
 		dialogueData ??= data;

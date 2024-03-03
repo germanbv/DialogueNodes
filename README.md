@@ -1,4 +1,4 @@
-# DialogueNodes for C# v1.6.1
+# DialogueNodes for C# v1.6.3
 ### Warning
 The installation of this addon can be a bit tricky, and **I highly suggest you use version control for it to work smoothly**. After copying and pasting the plugin into your project, Godot might complain about missing classes. This happens because Godot is trying to load an uncompiled addon (since we're using C#, we need to compile it first!).
 
@@ -35,7 +35,6 @@ The `DialogueBox` node provides several options to customize the look and layout
 ## Extended Features
 ### New C# BBCode FXs!
 
-- wait
 - speed
 - pause
 - colormod fx
