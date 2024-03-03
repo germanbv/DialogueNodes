@@ -104,7 +104,6 @@ offset_right = 12.0
 offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
-transitionType = 1
 
 [node name="ExternalVariables" type="Node" parent="."]
 script = ExtResource("10_mt08k")
@@ -114,5 +113,3 @@ stream = ExtResource("11_nq8dq")
 
 [connection signal="item_selected" from="DemoSelector" to="." method="OnDemoSelected"]
 [connection signal="pressed" from="StartButton" to="." method="OnButtonPressed"]
-[connection signal="DialogueCharDisplayed" from="DialogueBox" to="." method="OnCharacterDisplayed"]
-[connection signal="DialogueSignal" from="DialogueBox" to="." method="OnDialogueSignal"]

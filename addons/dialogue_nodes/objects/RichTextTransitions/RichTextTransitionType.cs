@@ -1,6 +1,6 @@
 public enum RichTextTransitionType
-{
+{	
 	None,
-	Wait,
 	Console,
+	Wait
 }

@@ -625,8 +625,8 @@ public partial class DialogueCore : Node
     }
 
     private string sanitizeWaitTags(string text, ref List<string> tags) 
-    {
-        text = $"[wait]" + text + $"[/wait]";
+    {   
+        text = $"[wait]" + text;
 
         string textWithoutBBCode = bbcodeRegex.Sub(text, "", true);
         int textLength = textWithoutBBCode.Length;

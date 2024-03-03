@@ -16,7 +16,7 @@ public partial class DialogueManager : Control
 	[Export] private DialogueData data;
 	[Export] private string startID = "Start";
 	[Export] private string skipInputAction = "ui_accept";
-	[Export] private RichTextTransitionType transitionType = RichTextTransitionType.Wait;
+	[Export] private RichTextTransitionType transitionType;
 	[Export(PropertyHint.Range, "1,150,")] private float textSpeed = 50.0f;
 	[Export(PropertyHint.Range, "0,2,")] private float punctuationPause = 0.45f;
 

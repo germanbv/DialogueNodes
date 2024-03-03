@@ -36,6 +36,8 @@ public partial class Demo : Control
 		}
 
 		dialogueBox.AddExternalVariable(externalVariablesDemo);
+		dialogueBox.Connect("DialogueCharDisplayed", Callable.From<int>(x => onCharacterDisplayed(x)));
+		dialogueBox.Connect("DialogueSignal", Callable.From<string>(x => onDialogueSignal(x)));
 	}
 
 	public void OnButtonPressed() 
@@ -51,7 +53,7 @@ public partial class Demo : Control
 		currentData = dialogueData[index];
 	}
 
-	public void OnDialogueSignal(string value) 
+	private void onDialogueSignal(string value) 
 	{	
 		switch (value) 
 		{
@@ -69,7 +71,7 @@ public partial class Demo : Control
 		cpuParticles.Emitting = true;
 	}
 
-	public void OnCharacterDisplayed(int index) 
+	private void onCharacterDisplayed(int index) 
 	{	
 		if (enableAudio && index % sfxFrequency == 0) 
 		{

@@ -1,6 +1,6 @@
 using Godot;
-using Godot.Collections;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 [GlobalClass]
@@ -30,8 +30,10 @@ public partial class BBCodeConsole : RichTextEffect
 
 	private int lastIndex;
 	private int lastProcessedCharIndex;
-	private bool[] processedChar;
-	private uint[] pauseChars;
+	private HashSet<int> processedChar;
+	private float halfPause;
+	private uint pauseChar;
+	private uint[] halfPauseChars;
 	private float currentSpeed;
 	private float currentPause;
 	private uint cursorAsGlyphIndex;
@@ -42,9 +44,7 @@ public partial class BBCodeConsole : RichTextEffect
 
 	private void initText(CharFXTransform charFX) 
 	{	
-		lastIndex = charFX.Env.TryGetValue("length", out Variant lengthVariant) ? lengthVariant.AsInt32(): 0;
-		processedChar = new bool[lastIndex];
-		lastIndex -= 1;
+		processedChar = new HashSet<int>();
 
 		cursorAsGlyphIndex = charToGlyphIndex(charFX.Font, cursor); 
 		spaceAsGlyphIndex = charToGlyphIndex(charFX.Font, space);
@@ -55,15 +55,21 @@ public partial class BBCodeConsole : RichTextEffect
 
 		i = 0;
 		on = false;
+		lastIndex = 0;
 		lastProcessedCharIndex = 0;
 		lastFrameTime = 0;
 		currentPause = 0;
 		currentSpeed = Speed;
 		elapsedTime = 0;
+		halfPause = PauseValue / 2;
 
 		if (pausesDict != null && pausesDict.ContainsKey(0)) 
 		{
 			currentPause = pausesDict[0];
+		}
+		else if (charFX.GlyphIndex == pauseChar) 
+		{	
+			currentPause += PauseValue;
 		}
 	}
 
@@ -108,9 +114,10 @@ public partial class BBCodeConsole : RichTextEffect
 
 	private void initPauseChars(CharFXTransform charFX) 
 	{
-		pauseChars = new uint[] 
+		pauseChar = charToGlyphIndex(charFX.Font, "."[0]);
+
+		halfPauseChars = new uint[] 
 		{
-			charToGlyphIndex(charFX.Font, "."[0]),
 			charToGlyphIndex(charFX.Font, ","[0]),
 			charToGlyphIndex(charFX.Font, ";"[0]),
 			charToGlyphIndex(charFX.Font, ":"[0]),
@@ -129,27 +136,38 @@ public partial class BBCodeConsole : RichTextEffect
 		double delta = charFX.ElapsedTime - lastFrameTime;
         lastFrameTime = charFX.ElapsedTime;
 		elapsedTime += delta;
+		lastIndex = Math.Max(lastIndex, charFX.RelativeIndex);
 
-		if (!processedChar[charFX.RelativeIndex]) 
+		if (!processedChar.Contains(charFX.RelativeIndex))
 		{	
 			int absoluteIndex = charFX.RelativeIndex;
 			
 			if (elapsedTime > ((float)absoluteIndex / currentSpeed) + currentPause || Skip) 
 			{	
-				if (pauseChars.Contains(charFX.GlyphIndex)) 
+				if (pauseChar == charFX.GlyphIndex && charFX.RelativeIndex != lastIndex-1) 
 				{	
-					currentPause += PauseValue; 
+					currentPause += PauseValue;
+				}
+				else if (halfPauseChars.Contains(charFX.GlyphIndex)) 
+				{
+					currentPause += halfPause;
 				}
 
 				charFX.GlyphIndex = charFX.GlyphIndex != spaceAsGlyphIndex ? cursorAsGlyphIndex : charFX.GlyphIndex;
 
 				charFX.Visible = true;
-				processedChar[absoluteIndex] = true;
+				processedChar.Add(charFX.RelativeIndex);
 				lastProcessedCharIndex = absoluteIndex;
 
-				if (!Skip) EmitSignal("CharDisplayed", absoluteIndex);
+				if (!Skip) 
+				{
+					EmitSignal("CharDisplayed", absoluteIndex);
+				}
 				
-				if (absoluteIndex >= lastIndex) EmitSignal("WaitFinished");
+				if (absoluteIndex >= lastIndex) 
+				{
+					EmitSignal("WaitFinished");
+				}
 				
 				if (pausesDict != null && pausesDict.ContainsKey(absoluteIndex)) 
 				{
