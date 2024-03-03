@@ -111,13 +111,13 @@ public partial class DialogueUI : Control
 		{
 			transitionEffect = new BBCodeWait {Speed = textSpeed, PauseValue = punctuationPause};
 			transitionEffect.Connect("WaitFinished", Callable.From(showOptions));
-			transitionEffect.Connect("CharDisplayed", Callable.From<int>(x => revealChar(x)));
+			transitionEffect.Connect("CharDisplayed", Callable.From(revealChar));
 		}
 		else if (transitionType == RichTextTransitionType.Console) 
 		{
 			transitionEffect = new BBCodeConsole{Speed = textSpeed, PauseValue = punctuationPause};
 			transitionEffect.Connect("WaitFinished", Callable.From(showOptions));
-			transitionEffect.Connect("CharDisplayed", Callable.From<int>(x => revealChar(x)));
+			transitionEffect.Connect("CharDisplayed", Callable.From(revealChar));
 		}
 
 		if (transitionEffect != null) dialogue.InstallEffect(transitionEffect);
@@ -239,9 +239,9 @@ public partial class DialogueUI : Control
 		}
 	}
 
-	private void revealChar(int index) 
+	private void revealChar() 
 	{
-		dialogueManager.EmitCharDisplayed(index);
+		dialogueManager.EmitCharDisplayed();
 	}
 
 	private void connectOptionsSignals(Button button, Callable newCallable) 

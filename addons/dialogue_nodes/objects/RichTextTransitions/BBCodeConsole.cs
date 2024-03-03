@@ -11,7 +11,7 @@ public partial class BBCodeConsole : RichTextEffect
     public delegate void WaitFinishedEventHandler();
 
 	[Signal] 
-    public delegate void CharDisplayedEventHandler(int charIndex);
+    public delegate void CharDisplayedEventHandler();
 	
 	public bool Skip = false;
 	public float Speed = 50.0f;
@@ -30,7 +30,7 @@ public partial class BBCodeConsole : RichTextEffect
 
 	private int lastIndex;
 	private int lastProcessedCharIndex;
-	private HashSet<int> processedChar;
+	private int nextChar;
 	private float halfPause;
 	private uint pauseChar;
 	private uint[] halfPauseChars;
@@ -44,8 +44,6 @@ public partial class BBCodeConsole : RichTextEffect
 
 	private void initText(CharFXTransform charFX) 
 	{	
-		processedChar = new HashSet<int>();
-
 		cursorAsGlyphIndex = charToGlyphIndex(charFX.Font, cursor); 
 		spaceAsGlyphIndex = charToGlyphIndex(charFX.Font, space);
 
@@ -53,6 +51,7 @@ public partial class BBCodeConsole : RichTextEffect
 		initDictionary("speed", charFX, ref speedDict);
 		initPauseChars(charFX);
 
+		nextChar = 0;
 		i = 0;
 		on = false;
 		lastIndex = 0;
@@ -138,7 +137,7 @@ public partial class BBCodeConsole : RichTextEffect
 		elapsedTime += delta;
 		lastIndex = Math.Max(lastIndex, charFX.RelativeIndex);
 
-		if (!processedChar.Contains(charFX.RelativeIndex))
+		if (charFX.RelativeIndex >= nextChar) 
 		{	
 			int absoluteIndex = charFX.RelativeIndex;
 			
@@ -156,12 +155,12 @@ public partial class BBCodeConsole : RichTextEffect
 				charFX.GlyphIndex = charFX.GlyphIndex != spaceAsGlyphIndex ? cursorAsGlyphIndex : charFX.GlyphIndex;
 
 				charFX.Visible = true;
-				processedChar.Add(charFX.RelativeIndex);
+				nextChar++;
 				lastProcessedCharIndex = absoluteIndex;
 
 				if (!Skip) 
 				{
-					EmitSignal("CharDisplayed", absoluteIndex);
+					EmitSignal("CharDisplayed");
 				}
 				
 				if (absoluteIndex >= lastIndex) 
@@ -191,7 +190,7 @@ public partial class BBCodeConsole : RichTextEffect
 				charFX.Visible = false;
 			}
 		}
-		else 
+		else
 		{	
 			//character already processed
 			if (charFX.RelativeIndex == lastProcessedCharIndex) 

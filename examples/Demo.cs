@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Data;
 using System.Linq;
 
 public partial class Demo : Control
@@ -15,7 +16,9 @@ public partial class Demo : Control
 	[ExportCategory("SFX Options")]
 	[Export] private bool enableAudio = true;
 	[Export(PropertyHint.Range, "1,5,1.0")] private float sfxFrequency = 3;
+
 	private DialogueData currentData;
+	private int charCounter = 0;
 
 	public override void _Ready()
 	{	
@@ -36,8 +39,7 @@ public partial class Demo : Control
 		}
 
 		dialogueBox.AddExternalVariable(externalVariablesDemo);
-		dialogueBox.Connect("DialogueCharDisplayed", Callable.From<int>(x => onCharacterDisplayed(x)));
-		dialogueBox.Connect("DialogueSignal", Callable.From<string>(x => onDialogueSignal(x)));
+		connectSignals();
 	}
 
 	public void OnButtonPressed() 
@@ -51,6 +53,14 @@ public partial class Demo : Control
 	public void OnDemoSelected(int index) 
 	{	
 		currentData = dialogueData[index];
+	}
+
+	private void connectSignals() 
+	{	
+		//I harcoded this to avoid losing bindings when steping into .NET Failed to unload assemblies.
+		dialogueBox.Connect("DialogueCharDisplayed", Callable.From(onCharacterDisplayed));
+		dialogueBox.Connect("DialogueSignal", Callable.From<string>(x => onDialogueSignal(x)));
+		dialogueBox.Connect("DialogueProceeded", Callable.From<string>((x) => charCounter = 0));
 	}
 
 	private void onDialogueSignal(string value) 
@@ -71,11 +81,13 @@ public partial class Demo : Control
 		cpuParticles.Emitting = true;
 	}
 
-	private void onCharacterDisplayed(int index) 
+	private void onCharacterDisplayed() 
 	{	
-		if (enableAudio && index % sfxFrequency == 0) 
+		if (enableAudio && charCounter % sfxFrequency == 0) 
 		{
 			audioStreamPlayer.Play();
 		}
+
+		charCounter++;
 	}
 }

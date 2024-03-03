@@ -36,6 +36,7 @@ cpuParticles = NodePath("Particles")
 demoSelector = NodePath("DemoSelector")
 audioStreamPlayer = NodePath("AudioStreamPlayer")
 externalVariablesDemo = NodePath("ExternalVariables")
+sfxFrequency = 4.0
 
 [node name="DemoSelector" type="OptionButton" parent="."]
 layout_mode = 1

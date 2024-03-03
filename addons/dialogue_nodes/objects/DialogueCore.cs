@@ -619,23 +619,16 @@ public partial class DialogueCore : Node
 
         text = sanitizeCustomTags("pause", text, ref tags);
         text = sanitizeCustomTags("speed", text, ref tags);
-        text = sanitizeWaitTags(text, ref tags);
+        text = setupWaitTag(text, ref tags);
         
         return text;
     }
 
-    private string sanitizeWaitTags(string text, ref List<string> tags) 
+    private string setupWaitTag(string text, ref List<string> tags) 
     {   
         text = $"[wait]" + text;
 
-        string textWithoutBBCode = bbcodeRegex.Sub(text, "", true);
-        int textLength = textWithoutBBCode.Length;
-
-        int openTagStart = text.IndexOf($"[wait", 0);
         int openTagEnd = text.IndexOf(']', 0);
-
-        tags.Add($"start={openTagStart}");
-        tags.Add($"length={textLength}");
 
         string insertText = "";
 

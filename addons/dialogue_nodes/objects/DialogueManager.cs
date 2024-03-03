@@ -9,7 +9,7 @@ public partial class DialogueManager : Control
     [Signal] public delegate void DialogueProceededEventHandler(string nodeType);
     [Signal] public delegate void DialogueSignalEventHandler(string value);
     [Signal] public delegate void DialogueEndedEventHandler();
-	[Signal] public delegate void DialogueCharDisplayedEventHandler(int idx);
+	[Signal] public delegate void DialogueCharDisplayedEventHandler();
     [Signal] public delegate void InternalVariableChangedEventHandler(string varName, Variant value);
 	[Signal] public delegate void OptionSelectedEventHandler(int idx);
 
@@ -95,8 +95,8 @@ public partial class DialogueManager : Control
 		EmitSignal("OptionSelected", idx);
 	}
 
-	public void EmitCharDisplayed(int idx) 
+	public void EmitCharDisplayed() 
 	{
-		EmitSignal("DialogueCharDisplayed", idx);
+		EmitSignal("DialogueCharDisplayed");
 	}
 }

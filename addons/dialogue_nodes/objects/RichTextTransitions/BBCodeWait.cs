@@ -11,7 +11,7 @@ public partial class BBCodeWait : RichTextEffect
     public delegate void WaitFinishedEventHandler();
 
 	[Signal] 
-    public delegate void CharDisplayedEventHandler(int charIndex);
+    public delegate void CharDisplayedEventHandler();
 	
 	public bool Skip = false;
 	public float Speed = 50.0f;
@@ -22,7 +22,7 @@ public partial class BBCodeWait : RichTextEffect
 	private Dictionary<int, float> pausesDict;
 	private Dictionary<int, float> speedDict;
 	private int lastIndex;
-	private HashSet<int> processedChar;
+	private int nextChar;
 
 	private float halfPause;
 	private uint pauseChar;
@@ -36,12 +36,11 @@ public partial class BBCodeWait : RichTextEffect
 
 	private void initText(CharFXTransform charFX) 
 	{	
-		processedChar = new HashSet<int>();
-
 		initDictionary("pause", charFX, ref pausesDict);
 		initDictionary("speed", charFX, ref speedDict);
 		initPauseChars(charFX);
 
+		nextChar = 0;
 		lastIndex = 0;
 		currentPause = 0;
 		currentSpeed = Speed;
@@ -122,7 +121,7 @@ public partial class BBCodeWait : RichTextEffect
 		elapsedTime += delta;
 		lastIndex = Math.Max(lastIndex, charFX.RelativeIndex);
 
-		if (!processedChar.Contains(charFX.RelativeIndex)) 
+		if (charFX.RelativeIndex >= nextChar) 
 		{
 			int absoluteIndex = charFX.RelativeIndex;
 		
@@ -138,11 +137,11 @@ public partial class BBCodeWait : RichTextEffect
 				}
 
 				charFX.Visible = true;
-				processedChar.Add(charFX.RelativeIndex);
+				nextChar++;
 
 				if (!Skip) 
 				{
-					EmitSignal("CharDisplayed", absoluteIndex);
+					EmitSignal("CharDisplayed");
 				} 
 
 				if (absoluteIndex >= lastIndex) 
@@ -172,7 +171,7 @@ public partial class BBCodeWait : RichTextEffect
 				charFX.Visible = false;
 			}
 		}
-		else 
+		else
 		{	
 			//character already processed
 			charFX.Visible = true;
