@@ -1,7 +1,6 @@
 @tool
 extends Control
 
-
 @onready var fileMenu = $Main/ToolBar/FileMenu
 @onready var addMenu = $Main/ToolBar/AddMenu
 @onready var popupMenu = $Main/Workspace/Graph/PopupMenu
@@ -31,18 +30,18 @@ var _base_color : Color
 func _ready():
 	init_menus()
 	data.hide()
-	dialogue.Initialize()
+	dialogue.initialize()
 	
 	addMenu.get_popup().id_pressed.connect(workspace.add_node)
 	runMenu.get_popup().id_pressed.connect(_on_run_menu_pressed)
 	fileMenu.get_popup().id_pressed.connect(_on_file_menu_pressed)
 	debugMenu.get_popup().id_pressed.connect(_on_debug_menu_pressed)
 	
-	dialogue.DialogueStarted.connect(_on_dialogue_started)
-	dialogue.DialogueSignal.connect(_on_dialogue_signal)
-	dialogue.InternalVariableChanged.connect(_on_dialogue_variable_changed)
-	dialogue.DialogueEnded.connect(_on_dialogue_ended)
-	dialogue.OptionSelected.connect(_on_dialogue_option_selected)
+	dialogue.dialogue_started.connect(_on_dialogue_started)
+	dialogue.dialogue_ended.connect(_on_dialogue_ended)
+	dialogue.dialogue_signal.connect(_on_dialogue_signal)
+	dialogue.variable_changed.connect(_on_dialogue_variable_changed)
+	dialogue.option_selected.connect(_on_dialogue_option_selected)
 	
 	var config = ConfigFile.new()
 	config.load('res://addons/dialogue_nodes/plugin.cfg')
@@ -66,8 +65,7 @@ func init_menus():
 
 
 func _run_tree(start_node):
-	var csharp_dialogue_data = load("res://addons/dialogue_nodes/objects/DialogueData.cs")
-	var data = csharp_dialogue_data.new()
+	var data : DialogueDataGD = DialogueDataGD.new()
 	
 	data.Starts = {}
 	data.Nodes = {}
@@ -80,7 +78,7 @@ func _run_tree(start_node):
 	data.Characters = characters.filePath.text
 	
 	dialogueBG.show()
-	dialogue.Start(data, start_node.ID)
+	dialogue.start(data, start_node.ID)
 
 func _update_run_menu():
 	runMenu.get_popup().clear()
@@ -310,7 +308,7 @@ func _on_dialogue_option_selected(idx):
 
 func _on_dialog_background_input(event):
 	if event is InputEventMouseButton:
-		dialogue.Stop()
+		dialogue.stop()
 
 
 func _on_version_number_pressed():

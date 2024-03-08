@@ -235,7 +235,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0.533333, 0.533333, 0.533333, 1)
-text = "1.0.3"
+text = "1.6.3"
 underline = 1
 
 [node name="NewDialog" type="FileDialog" parent="."]
@@ -274,7 +274,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DialogueWindow" parent="." instance=ExtResource("11_bynup")]
-visible = false
 layout_mode = 1
 
 [connection signal="about_to_popup" from="Main/ToolBar/RunMenu" to="." method="_update_run_menu"]

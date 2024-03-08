@@ -7,7 +7,8 @@ using System.Linq;
 [Tool]
 public partial class BBCodeSparkle : RichTextEffect
 {
-	//syntax: [sparkle c1=red c2=yellow c3=blue][/sparkle]
+	//syntax: [sparkle freq=5 c1=red c2=yellow c3=blue][/sparkle]
+
 	private string bbcode = "sparkle";
 	private List<Color> colors = new List<Color>();
 	private Dictionary<string, Color> colorsDict = new()

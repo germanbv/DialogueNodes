@@ -1,5 +1,3 @@
-using System.IO;
-using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -11,15 +9,25 @@ public partial class DialogueUI : Control
 	[Export] private Color speakerTxtColor = Colors.White;
 	[Export] private bool hidePortrait;
 
+	[ExportGroup("RichTextEffects")]
+	[Export] private bool ghost;
+	[Export] private bool colormod;
+	[Export] private bool cuss;
+	[Export] private bool hearth;
+	[Export] private bool jump;
+	[Export] private bool l33t;
+	[Export] private bool nervous;
+	[Export] private bool number;
+	[Export] private bool rain;
+	[Export] private bool sparkle;
+	[Export] private bool uWu;
+	[Export] private bool woo;
+
 	[ExportGroup("Connections")]
 	[Export] private Label speaker;
 	[Export] private TextureRect speakerPortrait;
 	[Export] private RichTextLabel dialogue;
 	[Export] private Button[] optionsButtons;
-	[Export] private Array<RichTextEffect> customEffects = new() 
-	{ 
-		new BBCodeGhost()
-	};
 
 	private DialogueCore dialogueCore;
 	private DialogueManager dialogueManager;
@@ -77,17 +85,14 @@ public partial class DialogueUI : Control
 
 	public void OnDialogueInput()
     {
-        if (customEffects.Count > 0)
-        {   
-            if (transitionEffect is BBCodeWait wait) 
-            {
-                wait.Skip = true;
-            }
-			else if (transitionEffect is BBCodeWord word) 
-			{
-				word.Skip = true;
-			}
-        }
+       if (transitionEffect is BBCodeWait wait) 
+		{
+			wait.Skip = true;
+		}
+		else if (transitionEffect is BBCodeWord word) 
+		{
+			word.Skip = true;
+		}
 
         optionsContainer.Show();
     }
@@ -99,10 +104,18 @@ public partial class DialogueUI : Control
 
 	private void initCustomEffects() 
 	{	
-		foreach (RichTextEffect effect in customEffects)
-		{   
-			dialogue.InstallEffect(effect);
-		}
+		if (ghost) dialogue.InstallEffect(new BBCodeGhost());
+		if (colormod) dialogue.InstallEffect(new BBCodeColormod());
+		if (hearth) dialogue.InstallEffect(new BBCodeHeart());
+		if (cuss) dialogue.InstallEffect(new BBCodeCuss());
+		if (jump) dialogue.InstallEffect(new BBCodeJump());
+		if (l33t) dialogue.InstallEffect(new BBCodeL33T());
+		if (nervous) dialogue.InstallEffect(new BBCodeNervous());
+		if (number) dialogue.InstallEffect(new BBCodeNumber());
+		if (rain) dialogue.InstallEffect(new BBCodeRain());
+		if (sparkle) dialogue.InstallEffect(new BBCodeSparkle());
+		if (uWu) dialogue.InstallEffect(new BBCodeUwU());
+		if (woo) dialogue.InstallEffect(new BBCodeWoo());
 	}
 
 	private void initTransitionFX(RichTextTransitionType transitionType, float textSpeed, float punctuationPause) 

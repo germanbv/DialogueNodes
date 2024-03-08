@@ -30,8 +30,8 @@ Nodes = {
 }
 Variables = {
 "Delta": {
-"type": 4,
-"value": "Cuao"
+"type": 3,
+"value": 0.0
 }
 }
 Comments = []

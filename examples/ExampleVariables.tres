@@ -24,8 +24,8 @@ Nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 271),
-"speaker": -1
+"size": Vector2(300.001, 271),
+"speaker": 1
 },
 "1_2": {
 "dialogue": "Let's use the variable COIN to store the number of coins. Now we have {{COINS}} coins.",
@@ -43,7 +43,7 @@ Nodes = {
 }
 },
 "size": Vector2(300, 307),
-"speaker": ""
+"speaker": 0
 },
 "1_3": {
 "dialogue": "Now the value of coins is: {{COINS}}. Open the example in the Dialogue Node Plugin to learn how it works!",
@@ -55,30 +55,30 @@ Nodes = {
 "text": ""
 }
 },
-"size": Vector2(300, 307),
+"size": Vector2(300.001, 307),
 "speaker": ""
 },
 "4_1": {
 "link": &"1_3",
 "offset": Vector2(2460, -920),
-"type": 1,
-"value": 50,
+"type": 0,
+"value": false,
 "variable": "COINS"
 },
 "4_2": {
 "link": &"1_3",
 "offset": Vector2(2480, -700),
-"type": 2,
-"value": 10,
+"type": 0,
+"value": 0.0,
 "variable": "COINS"
 }
 }
 Variables = {
 "COINS": {
-"type": 2,
-"value": 0
+"type": 4,
+"value": "0"
 }
 }
 Comments = []
 Strays = []
-Characters = ""
+Characters = "res://examples/CharacterList.tres"
