@@ -1,10 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
-using System.Threading;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeNervous : RichTextEffect
 {
 	//syntax: [nervous scale=1.0 freq=8.0][/nervous]

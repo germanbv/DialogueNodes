@@ -1,7 +1,5 @@
 using Godot;
-using System;
 
-[Tool]
 public partial class DialogueInput : Control
 {	
 	private string skipInputAction;

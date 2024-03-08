@@ -1,8 +1,6 @@
 using Godot;
 using System;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeUwU : RichTextEffect
 {
 	//syntax: [uwu][/uwu]

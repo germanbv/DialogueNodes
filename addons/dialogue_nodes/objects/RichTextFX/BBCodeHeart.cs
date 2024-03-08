@@ -2,8 +2,6 @@ using Godot;
 using System;
 using System.Linq;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeHeart : RichTextEffect
 {	
 	//syntax: [heart scale=1.0 freq=8.0][/heart]

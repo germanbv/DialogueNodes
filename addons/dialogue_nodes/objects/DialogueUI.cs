@@ -1,7 +1,6 @@
 using Godot;
 using Godot.Collections;
 
-[Tool]
 public partial class DialogueUI : Control
 {	
 	[ExportCategory("Preferences")]
@@ -10,18 +9,18 @@ public partial class DialogueUI : Control
 	[Export] private bool hidePortrait;
 
 	[ExportGroup("RichTextEffects")]
-	[Export] private bool ghost;
-	[Export] private bool colormod;
-	[Export] private bool cuss;
-	[Export] private bool hearth;
-	[Export] private bool jump;
-	[Export] private bool l33t;
-	[Export] private bool nervous;
-	[Export] private bool number;
-	[Export] private bool rain;
-	[Export] private bool sparkle;
-	[Export] private bool uWu;
-	[Export] private bool woo;
+	[Export] private bool colormod = true;
+	[Export] private bool cuss = true;
+	[Export] private bool ghost = true;
+	[Export] private bool hearth = true;
+	[Export] private bool jump = true;
+	[Export] private bool l33t = true;
+	[Export] private bool nervous = true;
+	[Export] private bool number = true;
+	[Export] private bool rain = true;
+	[Export] private bool sparkle = true;
+	[Export] private bool uwu = true;
+	[Export] private bool woo = true;
 
 	[ExportGroup("Connections")]
 	[Export] private Label speaker;
@@ -114,7 +113,7 @@ public partial class DialogueUI : Control
 		if (number) dialogue.InstallEffect(new BBCodeNumber());
 		if (rain) dialogue.InstallEffect(new BBCodeRain());
 		if (sparkle) dialogue.InstallEffect(new BBCodeSparkle());
-		if (uWu) dialogue.InstallEffect(new BBCodeUwU());
+		if (uwu) dialogue.InstallEffect(new BBCodeUwU());
 		if (woo) dialogue.InstallEffect(new BBCodeWoo());
 	}
 

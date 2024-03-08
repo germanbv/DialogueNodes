@@ -1,9 +1,6 @@
 using Godot;
 using Godot.Collections;
 
-
-[Icon("res://addons/dialogue_nodes/icons/Dialogue.svg")]
-[Tool]
 public partial class DialogueData : Resource
 {   
     [Export] public string FileName;

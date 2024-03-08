@@ -1,8 +1,6 @@
 using Godot;
 using System;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeWoo : RichTextEffect
 {
 	//syntax: [woo scale=1.0 freq=8.0][/woo]

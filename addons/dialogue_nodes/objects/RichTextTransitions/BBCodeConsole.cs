@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeConsole : RichTextEffect
 {	
 	[Signal] 

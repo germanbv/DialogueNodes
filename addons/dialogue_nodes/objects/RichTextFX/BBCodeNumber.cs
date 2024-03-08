@@ -1,10 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeNumber : RichTextEffect
 {
 	//syntax: [number][/number]

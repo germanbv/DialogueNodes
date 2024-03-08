@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Linq;
 using System.Globalization;
 
-[Tool]
 public partial class DialogueCore : Node
 {	
     public bool IsRunning {get;set;}

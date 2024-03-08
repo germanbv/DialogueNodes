@@ -2,8 +2,6 @@ using Godot;
 using System;
 using System.Linq;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeCuss : RichTextEffect
 {	
 	//syntax: [cuss][/cuss]

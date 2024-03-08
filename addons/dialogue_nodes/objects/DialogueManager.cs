@@ -1,8 +1,6 @@
 using Godot;
 using System;
 
-[Icon("res://addons/dialogue_nodes/icons/Dialogue.svg")]
-[Tool]
 public partial class DialogueManager : Control
 {
 	[Signal] public delegate void DialogueStartedEventHandler(string id);

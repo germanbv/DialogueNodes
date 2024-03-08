@@ -2,8 +2,6 @@ using Godot;
 using System;
 using System.Linq;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeJump : RichTextEffect
 {	
 	//syntax: [jump angle=3.141][/jump]

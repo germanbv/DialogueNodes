@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using Godot;
 using System;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeL33T : RichTextEffect
 {	
 	//syntax: [l33t][/l33t]

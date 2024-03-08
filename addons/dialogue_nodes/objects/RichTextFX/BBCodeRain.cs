@@ -1,8 +1,6 @@
 using Godot;
 using System;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeRain : RichTextEffect
 {
 	//syntax: [rain][/rain]

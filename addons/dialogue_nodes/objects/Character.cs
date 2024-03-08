@@ -1,7 +1,5 @@
 using Godot;
 
-[Icon("res://addons/dialogue_nodes/icons/Character.svg")]
-[Tool]
 public partial class Character : Resource
 {
 	[Export] public string Name { get; set; } = "";

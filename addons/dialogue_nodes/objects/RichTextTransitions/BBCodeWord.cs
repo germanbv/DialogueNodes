@@ -1,10 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
-using Godot.Collections;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeWord : RichTextEffect
 {	
 	[Signal] 

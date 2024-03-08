@@ -1,9 +1,6 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
-[GlobalClass]
-[Tool]
 public partial class BBCodeColormod : RichTextEffect
 {   
     //syntax: [colormod color=red][/colormod]
